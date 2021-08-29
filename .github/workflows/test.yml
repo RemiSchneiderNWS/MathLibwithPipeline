@@ -13,23 +13,12 @@ jobs:
     env:
       wd: ./MathLundiTest
     steps:
-    - uses: actions/checkout@master
     - name: Bump version and push tag
-      uses: Instrument/github-tag-action@v1.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: master
-        BUMP: major
-     
-    - uses: actions/checkout@v2.2.0
+      id: tag_version
+      uses: miguelfito/github-bump-and-tag-action@v1
       with:
-        fetch-depth: 0
-    - name: 'Get Previous tag'
-      id: previoustag
-      uses: "WyriHaximus/github-action-get-previous-tag@v1"
-      with:
-        fallback: 1.0.0 # Optional fallback tag to use when no tag can be found   
-        
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+              
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -47,7 +36,7 @@ jobs:
       with:
         repo_token: ${{ github.token }}
         file: ./README.md
-        tag: ${{ steps.previoustag.outputs.tag }}
+        tag: ${{ steps.tag_version.outputs.new_tag }}
         asset_name: README.md
         overwrite: true
         body: "ça fonctionne !"
