@@ -22,3 +22,13 @@ jobs:
       run: |
         cd ./MathLundiTest
         dotnet test --no-build --verbosity normal
+        cd ..
+    
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUBTOKEN }}
+        file: ./README.md
+        asset_name: README.md
+        overwrite: true
+        body: "ça fonctionne !"
