@@ -10,7 +10,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      wd: ./MathLundiTest
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -19,10 +20,10 @@ jobs:
         dotnet-version: 5.0.x
    
     - name: Test
+      working-directory: ${{ env.wd }}
       run: |
-        cd ./MathLundiTest
         dotnet test --no-build --verbosity normal
-        cd ..
+        
     
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
