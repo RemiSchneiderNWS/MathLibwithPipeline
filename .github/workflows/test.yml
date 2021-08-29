@@ -20,5 +20,5 @@ jobs:
    
     - name: Test
       run: |
-        ls -l
+        cd ./MathLundiTest
         dotnet test --no-build --verbosity normal
