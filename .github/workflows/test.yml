@@ -41,8 +41,8 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ github.token }}
-        file: ./MathLibrary/bin/Release/netcoreapp3.1/MathLibrary.dll
+        file: /home/runner/work/MathLibwithPipeline/MathLibwithPipeline/MathLundiTest/MathLibrary/bin/Release/netcoreapp3.1/MathLibrary.dll
         tag: ${{ steps.tag_version.outputs.new_tag }}
-        asset_name: README.md
+        asset_name: MathLibrary.dll
         overwrite: true
         body: "ça fonctionne !"
