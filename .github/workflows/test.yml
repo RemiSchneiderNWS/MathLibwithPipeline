@@ -34,6 +34,7 @@ jobs:
       run: |
         dotnet test --no-build --verbosity normal
     - name: Build
+      working-directory: ${{ env.wd }}
       run: dotnet publish -c release
     
     - name: Upload binaries to release
