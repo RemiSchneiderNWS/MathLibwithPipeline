@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MathLibrary;
+
+
 namespace UnitTestMath
 {
     [TestClass]
@@ -43,9 +45,14 @@ namespace UnitTestMath
         public void TestDivisionMethod()
         {
             int value1 = 1;
-            int value2 = 1;
-            int resultExpected = value1 / value2;
-            Assert.AreEqual(resultExpected, math.division(value1, value2));
+            int value2 = 0; 
+          
+            Assert.ThrowsException<System.Exception>(() => math.division(value1, value2));
+          
+             
+            Assert.AreEqual(3 / 4, math.division(3, 4));
+           
+            
 
         }
     }
