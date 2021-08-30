@@ -33,13 +33,14 @@ jobs:
       working-directory: ${{ env.wd }}
       run: |
         dotnet test --no-build --verbosity normal
-        
+    - name: Build
+      run: dotnet publish -c release
     
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ github.token }}
-        file: ./README.md
+        file: ./MathLibrary/bin/Release/netcoreapp3.1/MathLibrary.dll
         tag: ${{ steps.tag_version.outputs.new_tag }}
         asset_name: README.md
         overwrite: true
